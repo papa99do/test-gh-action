@@ -35,3 +35,9 @@ jobs:
           echo github.ref: ${{ github.ref }}
           echo github.head_ref: ${{ github.head_ref }}
           echo pull_request.number: ${{ github.event.pull_request.number }}
+          echo checkout: ${{ 
+            if github.event_name == 'pull_request_target' }} 
+            refs/pull/${{ github.event.pull_request.number }}/merge
+          {{ else }} 
+            ${{ github.ref }}
+          {{ end }}
